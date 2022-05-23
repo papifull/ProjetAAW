@@ -1,7 +1,14 @@
 const express = require("express");
 const app = express();
-var pg = require('./db/db');
-pg.connectDB();
+app.use(express.json());
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
+
+
+
+const usersRoute = require('./routes/routes');
+app.use(usersRoute);
+
 app.post("/post", (req, res) => {
   console.log("Connected to React");
   res.redirect("/");
